@@ -1,6 +1,12 @@
 # Photogram Industrial Auth 1
 
+### Target
+
 Our industrial-grade application is shaping up, but it's sorely lacking in one area: security. Right now, everyone can see everything and do everything (especially if they can guess URLs, which are easy to guess since we're following RESTful conventions and using sequential integer IDs).
+
+[Here is our more secure target.](https://industrial-auth-1.herokuapp.com/)
+
+### Resources
 
 Use what you've learned about:
 
@@ -9,12 +15,31 @@ Use what you've learned about:
  - Devise's `current_user` method.
  - Ruby's `if`/`else` statements.
 
-To add some security to our application. A non-exhaustive list of things to do:
+### Workflow
 
- - If I click delete on a photo that's not mine, I should be redirected back to the page I was on before.
- - If I click edit on a photo that's not mine, I should be redirected back to the page I was on before.
- - If I click delete on a comment that's not mine, I should be redirected back to the page I was on before.
- - If I click edit on a comment that's not mine, I should be redirected back to the page I was on before.
- - If I'm not a user's accepted follower, I can't see their posts (but I can visit their page, see their followers, and who they are following).
+Try to use a good Git workflow, including branching, opening Pull Requests, and merging back to `main` before starting on your next task. If you do, then it will be easy for us to give you feedback on each task in isolation.
+
+ - [Merging workflow](https://chapters.firstdraft.com/chapters/859#use-githubs-interface-to-merge)
+ - [Git aliases](https://chapters.firstdraft.com/chapters/857)
+
+### Tasks
+
+To add some security to your application until you think it matches the target. A non-exhaustive list of things to do:
+
+ - If I click delete on a photo that's not mine, I should be redirected back to the page I was on before. *(Once you've locked that down properly, you should hide the link so as not to be rude.)*
+ - If I click edit on a photo that's not mine, I should be redirected back to the page I was on before. *(Once you've locked that down properly, you should hide the link so as not to be rude.)*
+ - If I click delete on a comment that's not mine, I should be redirected back to the page I was on before. *(Once you've locked that down properly, you should hide the link so as not to be rude.)*
+ - If I click edit on a comment that's not mine, I should be redirected back to the page I was on before. *(Once you've locked that down properly, you should hide the link so as not to be rude.)*
+ - Regardless of following/private status, I can visit any user's profile page, see their followers, and who they are following. But I shouldn't be able to see the posts and likes section at the bottom of their profile page unless:
+    - They are not private. Then anyone can see their posts and likes, even if they are not a follower.
+    - They are private and I am an accepted follower. (I can still see anyone's post if it e.g. shows up in my Discover, and that is how I might wind up on their profile page to send them a follow request.)
  - Only a user should be able to see their own Pending follow requests.
- - Is the application secure? Put on your [hacker hat](https://en.wikipedia.org/wiki/White_hat_(computer_security)): can you think of any other attacks?
+ - The collections of photos that a user sees through their leaders (feed, discover) should only be viewable by them. In other words, `/carol/feed` and `/carol/discover` should not be visitable by Alice or Bob, only by Carol.
+
+### Try to harden the application further
+
+Is the application secure? Put on your hacker hat: can you think of any other attacks? If so, plug the holes!
+
+We'll spend the first portion of class next week in small groups [pen testing](https://searchsecurity.techtarget.com/definition/penetration-testing) — i.e., trying to hack — each other's applications. ([The target](https://industrial-auth-1.herokuapp.com/) is not fully hardened, so you can practice by hacking it.)
+
+For this assignment, submit the URL of whichever PR contains your final commit. That's the one your groupmates will spin up a Gitpod workspace on and code review/attempt to hack. (It can be the same URL that you submitted for the in-class assignment.)
