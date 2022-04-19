@@ -1,4 +1,6 @@
 class PhotosController < ApplicationController
+  # random change
+  
   before_action :set_photo, only: %i[ show edit update destroy ]
 
   before_action :ensure_owner_is_current_user, only: [:edit, :update, :destroy]
